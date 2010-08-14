@@ -16,7 +16,7 @@ var goauthcon *goauth.OAuthConsumer
 
 == GET OAuth ==
 
-    r, err := goauthcon.OAuthRequestGet(
+	r, err := goauthcon.OAuthRequestGet(
 		"http://api.twitter.com/1/account/verify_credentials.json",
 		AT )
 
