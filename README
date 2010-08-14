@@ -5,5 +5,13 @@ Copyright 2010 The GOAuth Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 
-TODO : Add Example and Links to Examples of use
+See example.go for a simple http example that connects to twitter 
+allows you to get the Home Time Lime for the OAuthed twitter account, 
+send a tweet & Check Credentials. 
+
+Note that the Check Credentials & Home Time Line use GET methods and the 
+Update status uses a POST method.
+
+TODO : add link to example on go.hokapoka.com (once written)
+
 
