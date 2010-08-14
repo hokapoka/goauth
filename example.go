@@ -47,7 +47,7 @@ func main(){
 	}
 
 	web.Get("/signin/twitter(.*)", twitterSignIn)
-    web.Get("/callback/twitter(.*)", twitterCallback)
+	web.Get("/callback/twitter(.*)", twitterCallback)
 
 	web.Get("/twitter/hometimeline(.*)", twitterHomeTimeLine)
 	web.Get("/twitter/updatestatus(.*)", twitterUpdateStatus)
