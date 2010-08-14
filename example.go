@@ -49,10 +49,11 @@ func main(){
 	web.Get("/signin/twitter(.*)", twitterSignIn)
     web.Get("/callback/twitter(.*)", twitterCallback)
 
-    web.Get("/twitter/hometimeline(.*)", twitterHomeTimeLine)
-    web.Get("/twitter/updatestatus(.*)", twitterUpdateStatus)
-    web.Get("/twitter/credentials(.*)", twitterVerifyCredentials)
-    web.Get("/(.*)", noRespond)
+	web.Get("/twitter/hometimeline(.*)", twitterHomeTimeLine)
+	web.Get("/twitter/updatestatus(.*)", twitterUpdateStatus)
+	web.Get("/twitter/credentials(.*)", twitterVerifyCredentials)
+	web.Get("/(.*)", noRespond)
+
 	web.Run("0.0.0.0:7177")
 
 }
