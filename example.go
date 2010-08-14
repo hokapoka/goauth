@@ -58,7 +58,6 @@ func main(){
 
 }
 
-
 func twitterSignIn(ctx *web.Context, name string) {
 	s, err := goauthcon.GetRequestAuthorizationURL()
 	if err != nil {
