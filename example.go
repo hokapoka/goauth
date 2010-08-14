@@ -101,8 +101,6 @@ func twitterVerifyCredentials(ctx *web.Context, name string){
 
 	if err != nil {
 		ctx.WriteString("<p style=\"color:red\">Error : " + err.String() + "</p>")
-	}else{
-		ctx.WriteString("<p style=\"color:green\">Sent Request Sent :-</p>")
 	}
 
 	b, _ := ioutil.ReadAll( r.Body ) 
@@ -133,8 +131,6 @@ func twitterHomeTimeLine(ctx *web.Context, name string){
 
 	if err != nil {
 		ctx.WriteString("<p style=\"color:red\">Error : " + err.String() + "</p>")
-	}else{
-		ctx.WriteString("<p style=\"color:green\">Sent Request :-</p>")
 	}
 
 	b, _ := ioutil.ReadAll( r.Body ) 
@@ -167,8 +163,6 @@ func twitterUpdateStatus(ctx *web.Context, name string){
 
 	if err != nil {
 		ctx.WriteString("<p style=\"color:red\">Error : " + err.String() + "</p>")
-	}else{
-		ctx.WriteString("<p style=\"color:green\">Sent Request - Status Updated </p>")
 	}
 
 	b, _ := ioutil.ReadAll( r.Body ) 
