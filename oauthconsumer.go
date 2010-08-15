@@ -205,12 +205,12 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 }
 
 // OAuthRequestGet return the response via a GET for the url with the AccessToken passed
-func (oc *OAuthConsumer) OAuthRequestGet( url string, at *AccessToken) (r *http.Response, err os.Error) {
+func (oc *OAuthConsumer) Get( url string, at *AccessToken) (r *http.Response, err os.Error) {
 	return oc.oAuthRequest(url, Params{}, at, "GET")
 }
 
 // OAuthRequest returns the response via a POST for the url with the AccessToken passed & the Form params passsed in fparams
-func (oc *OAuthConsumer) OAuthRequest( url string, fparams Params, at *AccessToken) (r *http.Response, err os.Error) {
+func (oc *OAuthConsumer) Post( url string, fparams Params, at *AccessToken) (r *http.Response, err os.Error) {
 	return oc.oAuthRequest( url, fparams, at, "POST")
 }
 

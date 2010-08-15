@@ -13,8 +13,8 @@ import (
 
 
 
-// Get Taken from the golang source modifed to allow headers to be passed and no redirection allowed
-func Get(url string,  headers map[string]string) (r *http.Response, err os.Error) {
+// get Taken from the golang source modifed to allow headers to be passed and no redirection allowed
+func get(url string,  headers map[string]string) (r *http.Response, err os.Error) {
 
 	var req http.Request
 	if err != nil { return }
@@ -26,8 +26,8 @@ func Get(url string,  headers map[string]string) (r *http.Response, err os.Error
 	return
 }
 
-// Post taken from Golang modified to allow Headers to be pased
-func Post(url string, headers map[string]string, body io.Reader) (r *http.Response, err os.Error) {
+// post taken from Golang modified to allow Headers to be pased
+func post(url string, headers map[string]string, body io.Reader) (r *http.Response, err os.Error) {
     var req http.Request
     req.Method = "POST"
     req.ProtoMajor = 1
