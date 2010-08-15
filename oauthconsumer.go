@@ -76,7 +76,7 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 		"Authorization":authHeader,
 	}
 
-	r, err := Post(oc.RequestTokenURL, headers, buf)
+	r, err := post(oc.RequestTokenURL, headers, buf)
 
 	if err != nil {
 		return "", err
@@ -172,7 +172,7 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 	}
 
 	// Action the POST to get the AccessToken
-	r, err :=  Post(oc.AccessTokenURL, headers, buf)
+	r, err :=  post(oc.AccessTokenURL, headers, buf)
 	if err != nil {
 		fmt.Println(err.String())
 		return nil
@@ -283,11 +283,11 @@ func (oc *OAuthConsumer) oAuthRequest( url string, fparams Params, at *AccessTok
 	fmt.Println(authHeader)
 	if method == "GET" {
 		// return Get response
-		return Get(url, headers)
+		return get(url, headers)
 	}
 
 	// return POSTs response
-	return Post(url, headers, buf)
+	return post(url, headers, buf)
 
 }
 
