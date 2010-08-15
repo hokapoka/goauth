@@ -1,7 +1,6 @@
 package oauth
 
 import (
-	"fmt"
 )
 
 type RequestToken struct{
