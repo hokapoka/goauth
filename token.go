@@ -10,10 +10,6 @@ type RequestToken struct{
 	Verifier string
 }
 
-func (t *RequestToken)  test(){
-	fmt.Println("hi")
-}
-
 type AccessToken struct{
 	Token string
 	Secret string
