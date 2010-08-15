@@ -11,7 +11,7 @@
 // respective user/visitor accounts.  
 //
 // Additionally, you will need to replace the ConsumerKey, 
-// ConsumerSecrect & CallBackURL with you relevants values.
+// ConsumerSecret & CallBackURL with you relevants values.
 // 
 // If you have any issues please feel free to contact : 
 //
@@ -41,7 +41,7 @@ func main(){
 		AccessTokenURL:"http://twitter.com/oauth/access_token",
 		AuthorizationURL:"http://twitter.com/oauth/authorize",
 		ConsumerKey:"change me",
-		ConsumerSecrect:"change me",
+		ConsumerSecret:"change me",
 		CallBackURL:"http://example.hokapoka.com/callback/twitter",
 
 	}

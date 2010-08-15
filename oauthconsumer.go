@@ -22,13 +22,13 @@ type OAuthConsumer struct{
 	AccessTokenURL string
 	AuthorizationURL string
 	ConsumerKey string
-	ConsumerSecrect string
+	ConsumerSecret string
 	CallBackURL string
 	requestTokens []*RequestToken
 }
 
 
-
+// GetRequestAuthorizationURL Returns the URL for the visitor to Authorize the Access
 func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 	// Gather the params
 	p := Params{}
@@ -55,7 +55,7 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 					EncodeURL(strings.Join(sigBaseCol, "&"))
 
 	// Generate Composite Signing key
-	key := oc.ConsumerSecrect + "&" + "" // token secrect is blank on the Resquest Token
+	key := oc.ConsumerSecret + "&" + "" // token secrect is blank on the Resquest Token
 
 	// Generate Signature
 	d := oc.digest(key, sigBaseStr)
@@ -109,7 +109,7 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 
 }
 
-// GetAccessToken gets the access token
+// GetAccessToken gets the access token for the response from the Authorization URL
 func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *AccessToken{
 
 	fmt.Println("***************************** GET ACCESS TOKEN **********************")
@@ -150,7 +150,7 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 					EncodeURL(strings.Join(sigBaseCol, "&"))
 
 	// Generate Composite Signing key
-	key := oc.ConsumerSecrect + "&" + rt.Secret
+	key := oc.ConsumerSecret + "&" + rt.Secret
 
 	// Generate Signature
 	d := oc.digest(key, sigBaseStr)
@@ -256,7 +256,7 @@ func (oc *OAuthConsumer) oAuthRequest( url string, fparams Params, at *AccessTok
 					EncodeURL(strings.Join(sigBaseCol, "&"))
 
 	// Generate Composite Signing key
-	key := oc.ConsumerSecrect + "&" + at.Secret
+	key := oc.ConsumerSecret + "&" + at.Secret
 
 	// Generate Signature
 	d := oc.digest(key, sigBaseStr)
