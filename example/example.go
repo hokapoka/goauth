@@ -195,11 +195,9 @@ func getParam(ctx *web.Context, param string) (v string){
 	c, ok := ctx.Request.Params[param]
 
 	if !ok { return }
+	
+	v = c
 
-	if len(c) > 0 {
-		v = c[0]
-		return
-	}
 	return
 }
 
