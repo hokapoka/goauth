@@ -5,7 +5,7 @@ import (
 	"os"
 	"io"
 	"net"
-	"encoding/base64"
+//	"encoding/base64"
 	"strings"
 	"bufio"
 	"crypto/tls"
@@ -83,7 +83,7 @@ func send(req *http.Request) (resp *http.Response, err os.Error) {
     if !hasPort(addr) {
         addr += ":" + req.URL.Scheme
     }
-    info := req.URL.Userinfo
+    /*info := req.URL.Userinfo
     if len(info) > 0 {
         enc := base64.URLEncoding
         encoded := make([]byte, enc.EncodedLen(len(info)))
@@ -93,12 +93,12 @@ func send(req *http.Request) (resp *http.Response, err os.Error) {
         }
         req.Header["Authorization"] = "Basic " + string(encoded)
     }
-
+*/
     var conn io.ReadWriteCloser
     if req.URL.Scheme == "http" {
         conn, err = net.Dial("tcp", "", addr)
     } else { // https
-        conn, err = tls.Dial("tcp", "", addr)
+        conn, err = tls.Dial("tcp", "", addr, nil)
     }
     if err != nil {
         return nil, err

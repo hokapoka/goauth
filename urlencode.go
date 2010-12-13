@@ -18,7 +18,7 @@ func EncodeURL(u string) string {
 
 func encodeChar(c int) []byte {
 	b := make([]byte, utf8.RuneLen(c))
-	utf8.EncodeRune(c, b)
+	utf8.EncodeRune(b, c)
 	if bytes.Index(safe, b) != -1 {
 		return b
 	}
