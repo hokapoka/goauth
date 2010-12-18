@@ -1,9 +1,14 @@
+GOAuth
+======
+
 This is the source code repository for the GOAuth an OAuth consumer
 written on the Go programming language.
 
 Copyright 2010 The GOAuth Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
+
+V 0.0.2
 
 Example Usage :
 
@@ -14,15 +19,16 @@ var goauthcon *goauth.OAuthConsumer
 
 ...
 
-== GET OAuth ==
+GET OAuth
+--------------------
 
 	r, err := goauthcon.Get(
 		"http://api.twitter.com/1/account/verify_credentials.json",
 		AT )
 
 
-== POST OAuth ==
-
+POST OAuth 
+--------------------
 	r, err := goauthcon.Post(
 		"http://api.twitter.com/1/statuses/update.json",
 		goauth.Params{
@@ -30,7 +36,8 @@ var goauthcon *goauth.OAuthConsumer
 		},
 		AT )
 
-== More Complete Example ==
+More Complete Example 
+--------------------
 
 See example.go for a simple http example that connects to twitter 
 allows you to get the Home Time Lime for the OAuthed twitter account, 
@@ -39,6 +46,44 @@ send a tweet & Check Credentials.
 Note that the Check Credentials & Home Time Line use GET methods and the 
 Update status uses a POST method.
 
+Revision History 
+--------------------
+
+    == Version 0.0.3 ==
+
+   Previous versions only worked with twitter.  Issues, especially
+   with Googles API, have been fixed.
+   
+   Replaced URL Encoder with Calvin McAnarney version that conforms
+   to RFC 3986.
+   (https://github.com/csmcanarney/gooauth/blob/master/encode.go)
+ 
+   Additional issues with Googles OAuth API fixed. - Inparticular 
+   Certain chars contiained in their tokens end up getting double 
+   encoded if you follow the RFC specification.  Current fix is a
+   bit of a hack, parts are allowed to be Encoded twice, and then
+   replaced with the actual values that should be sent.
+
+   Tested with Googles Buzz, Adwords, Calender & Reader OAuth 
+   servies all functions as expected. 
+
+   Additional testing is required with other services, such as
+   twitter, digg to see if these fixes have effected these.
+
+
+   == Version  0.0.2 ==
+   
+   Minor fixes to Makefile to work with latest revision of Go. 
+   Additional fixes to other changes in Go.
+
+
+   == Version 0.0.1 ==
+
+   Initial release, general mechs are functional GET/POST, creation
+   of an OAuth consumer.
+
+Contant 
+--------------------
 
 If you have any issues please feel free to contact : 
 
