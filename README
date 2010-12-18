@@ -24,6 +24,7 @@ GET OAuth
 
 	r, err := goauthcon.Get(
 		"http://api.twitter.com/1/account/verify_credentials.json",
+		nil,
 		AT )
 
 
