@@ -82,13 +82,13 @@ func twitterSignInVerify(ctx *web.Context, name string) {
 
 	ctx.WriteString("<h1>Twitter Out Of Band Verification</h1>")
 
-	v := getParam(ctx, "verifier")
-	if v == "" {
+	ver := getParam(ctx, "verifier")
+	if ver == "" {
 		ctx.WriteString("<p style=\"color:red;\">Please Enter the PIN Number!</p>")
 		return
 	}
 
-	at := goauthcon.GetAccessToken(RT.Token, v)
+	at := goauthcon.GetAccessToken(RT.Token, ver)
 
 	// Store at off to persistant data store for use later.
 	AT = at
