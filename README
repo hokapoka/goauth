@@ -8,7 +8,7 @@ Copyright 2010 The GOAuth Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 
-V 0.0.2
+V 0.0.4
 
 Example Usage :
 
@@ -47,6 +47,10 @@ send a tweet & Check Credentials.
 
 Note that the Check Credentials & Home Time Line use GET methods and the 
 Update status uses a POST method.
+
+Another Example (example_buzz) shows a simple Google Buzz Consumer
+that searching for activites.  Note: This example is dependant on 
+my gobuzz package here : http://github.com/hokapoka/gobuzz
 
 Revision History 
 ----------------
