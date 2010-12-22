@@ -29,7 +29,7 @@ type OAuthConsumer struct{
 
 
 // GetRequestAuthorizationURL Returns the URL for the visitor to Authorize the Access
-func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
+func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os.Error){
 	// Gather the params
 	p := Params{}
 
@@ -91,7 +91,7 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 	r, err := get(oc.RequestTokenURL, headers)
 
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
 
 	b, _ := ioutil.ReadAll( r.Body ) 
@@ -119,7 +119,7 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 
 	oc.appendRequestToken(rt)
 
-	return oc.AuthorizationURL + "?oauth_token=" + rt.Token, nil
+	return oc.AuthorizationURL + "?oauth_token=" + rt.Token, rt, nil
 
 }
 

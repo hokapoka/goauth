@@ -46,7 +46,7 @@ func main(){
 }
 
 func googleSignin(ctx *web.Context, name string) {
-	s, err := googleConn.GetRequestAuthorizationURL()
+	s, _, err := googleConn.GetRequestAuthorizationURL()
 	if err != nil {
 		ctx.WriteString(err.String())
 	}
