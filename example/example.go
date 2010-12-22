@@ -97,6 +97,7 @@ func twitterVerifyCredentials(ctx *web.Context, name string){
 
 	r, err := goauthcon.Get(
 		"http://api.twitter.com/1/account/verify_credentials.json",
+		nil,
 		AT )
 
 	if err != nil {
@@ -128,6 +129,7 @@ func twitterHomeTimeLine(ctx *web.Context, name string){
 
 	r, err := goauthcon.Get(
 		"http://api.twitter.com/1/statuses/home_timeline.json",
+		nil,
 		AT )
 
 	if err != nil {
