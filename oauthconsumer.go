@@ -35,7 +35,6 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 
 	// Add required OAuth params
 	p.Add( &Pair{ Key:"oauth_version", Value:"1.0" } )
-	//p.Add( &Pair{ Key:"oauth_nonce", Value:"a0cd80b80b4ea894eedf56491b34d30c" } )
 	p.Add( &Pair{ Key:"oauth_timestamp", Value:strconv.Itoa64(time.Seconds()) } )
 	p.Add( &Pair{ Key:"oauth_consumer_key", Value:oc.ConsumerKey } )
 	p.Add( &Pair{ Key:"oauth_callback", Value:oc.CallBackURL } )
@@ -97,6 +96,8 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, os.Error){
 
 	b, _ := ioutil.ReadAll( r.Body ) 
 	s := string(b)
+
+	fmt.Println(s)
 
 	rt := &RequestToken{}
 

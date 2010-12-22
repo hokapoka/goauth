@@ -42,7 +42,7 @@ func main(){
 		AuthorizationURL:"http://twitter.com/oauth/authorize",
 		ConsumerKey:"change me",
 		ConsumerSecret:"change me",
-		CallBackURL:"http://example.hokapoka.com/callback/twitter",
+		CallBackURL:"http://changeme.hokapoka.com/callback/twitter",
 
 	}
 
