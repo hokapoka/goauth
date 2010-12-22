@@ -97,7 +97,6 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os
 	b, _ := ioutil.ReadAll( r.Body ) 
 	s := string(b)
 
-	fmt.Println(s)
 
 	rt := &RequestToken{}
 
@@ -126,7 +125,6 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os
 // GetAccessToken gets the access token for the response from the Authorization URL
 func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *AccessToken{
 
-	fmt.Println("***************************** GET ACCESS TOKEN **********************")
 	var rt *RequestToken
 
 	// Match the RequestToken by Token
@@ -137,11 +135,6 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 	}
 
 	rt.Verifier = verifier
-
-	fmt.Println(rt.Token + " : " + Encode(rt.Token))
-	fmt.Println(rt.Verifier + " : " + Encode(rt.Verifier))
-	fmt.Println(rt.Secret + " : " + Encode(rt.Secret))
-
 
 	// Gather the params
 	p := Params{}
@@ -170,8 +163,6 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 
 	sigBaseStr= strings.Replace(sigBaseStr, Encode(Encode(rt.Token)), Encode(rt.Token), 1)
 
-	fmt.Println(sigBaseStr);
-
 	// Generate Composite Signing key
 	key := Encode(oc.ConsumerSecret) + "&" + rt.Secret
 
@@ -197,14 +188,6 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 		"Authorization":authHeader,
 	}
 
-/*	fmt.Println(" ** URL ** ")
-	fmt.Println(oc.AccessTokenURL)
-	fmt.Println("** Auth Header **" )
-	fmt.Println(authHeader)
-
-	fmt.Println("** SIG  **" )
-	fmt.Println(d)
-*/
 	// Action the POST to get the AccessToken
 	r, err :=  post(oc.AccessTokenURL, headers, buf)
 
@@ -217,8 +200,6 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 	b, _ := ioutil.ReadAll( r.Body ) 
 	s := string(b)
 	at := &AccessToken{}
-
-	fmt.Println(s)
 
 	if strings.Index(s, "&") > -1 {
 		vals := strings.Split(s, "&", 10)
@@ -252,8 +233,6 @@ func (oc *OAuthConsumer) Post( url string, fparams Params, at *AccessToken) (r *
 }
 
 func (oc *OAuthConsumer) oAuthRequest( url string, fparams Params, at *AccessToken, method string) (r *http.Response, err os.Error) {
-
-	fmt.Println("***************************** DO REQUEST **********************")
 
 	// Gather the params
 	p := Params{}
@@ -316,26 +295,12 @@ func (oc *OAuthConsumer) oAuthRequest( url string, fparams Params, at *AccessTok
 
 	authHeader = strings.Replace(authHeader, Encode(at.Token), at.Token, 1)
 
-	fmt.Println(at.Token)
 
 	// Add Header & Buffer for params
 	buf := bytes.NewBufferString(fparamsStr)
 	headers := map[string]string{
-//		"Content-Type":"application/atom+xml",
 		"Authorization":authHeader,
 	}
-
-	fmt.Println(" ** URL ** ")
-	fmt.Println(url)
-	fmt.Println("** Auth Header **" )
-	fmt.Println(authHeader)
-
-	fmt.Println("** SIG Base **" )
-	fmt.Println(sigBaseStr)
-
-
-	fmt.Println("** SIG  **" )
-	fmt.Println(d)
 
 	if method == "GET" {
 		// return Get response
