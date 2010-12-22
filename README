@@ -69,37 +69,37 @@ Revision History
 
     == Version 0.0.3 ==
 
-   Previous versions only worked with twitter.  Issues, especially
-   with Googles API, have been fixed.
+	Previous versions only worked with twitter.  Issues, especially
+	with Googles API, have been fixed.
    
-   Replaced URL Encoder with Calvin McAnarney version that conforms
-   to RFC 3986.
-   (https://github.com/csmcanarney/gooauth/blob/master/encode.go)
+	Replaced URL Encoder with Calvin McAnarney version that conforms
+	to RFC 3986.
+	(https://github.com/csmcanarney/gooauth/blob/master/encode.go)
  
-   Additional issues with Googles OAuth API fixed. - Inparticular 
-   Certain chars contiained in their tokens end up getting double 
-   encoded if you follow the RFC specification.  Current fix is a
-   bit of a hack, parts are allowed to be Encoded twice, and then
-   replaced with the actual values that should be sent.
+	Additional issues with Googles OAuth API fixed. - Inparticular 
+	Certain chars contiained in their tokens end up getting double 
+	encoded if you follow the RFC specification.  Current fix is a
+ 	bit of a hack, parts are allowed to be Encoded twice, and then
+	replaced with the actual values that should be sent.
 
-   Tested with Googles Buzz, Adwords, Calender & Reader OAuth 
-   servies all functions as expected. 
+	Tested with Googles Buzz, Adwords, Calender & Reader OAuth 
+	servies all functions as expected. 
 
-   Additional testing is required with other services, such as
-   twitter, digg to see if these fixes have effected these.
+	Additional testing is required with other services, such as
+	twitter, digg to see if these fixes have effected these.
 
-	oauth.Get now recives a Params object too. 
+		oauth.Get now recives a Params object too. 
 
    == Version  0.0.2 ==
    
-   Minor fixes to Makefile to work with latest revision of Go. 
-   Additional fixes to other changes in Go.
+	Minor fixes to Makefile to work with latest revision of Go. 
+	Additional fixes to other changes in Go.
 
 
    == Version 0.0.1 ==
 
-   Initial release, general mechs are functional GET/POST, creation
-   of an OAuth consumer.
+	Initial release, general mechs are functional GET/POST, creation
+	of an OAuth consumer.
 
 Contact 
 -------
