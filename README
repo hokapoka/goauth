@@ -51,6 +51,22 @@ Update status uses a POST method.
 Revision History 
 ----------------
 
+    == Version 0.0.4 ==
+
+	Added a Google Buzz example that demos the use of the package 
+	with a google OAuth supported service. 
+
+	Also added minor fix to the original twitter example so that 
+	it works with the latest Exported interfaces provided by the 
+	OAuthConsumer.
+
+	Tested with : 
+		Google Buzz, Calender, Adwords
+		Twitter 
+		Digg 
+	
+	All work.  
+
     == Version 0.0.3 ==
 
    Previous versions only worked with twitter.  Issues, especially
