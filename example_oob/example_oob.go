@@ -69,7 +69,7 @@ func twitterSignIn(ctx *web.Context, name string) {
 	}
 
 	if rt != nil {
-		RT = rt
+		RT = rt // Store the Request Token off for use whit GetAccessToken
 	}
 
 	ctx.WriteString("<p>Visit this URL :<a href=\"" + s + "\" target=\"_new\">" + s + "</a> (which will open a new tab) and Allow access. Then, return to this tab and enter the PIN number into the box below.</p>")
