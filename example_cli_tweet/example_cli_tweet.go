@@ -24,8 +24,8 @@ func main(){
 		RequestTokenURL:"http://twitter.com/oauth/request_token",
 		AccessTokenURL:"http://twitter.com/oauth/access_token",
 		AuthorizationURL:"http://twitter.com/oauth/authorize",
-		ConsumerKey:"OdFyxuGBBcBx4edyWGvsQ",
-		ConsumerSecret:"tyhEcdpaJoKUNsQju0PYjKAxOAQUNwAnjEjOb3tRYTs",
+		ConsumerKey:"change me",
+		ConsumerSecret:"change me",
 		CallBackURL:"oob",
 
 	}
