@@ -1,0 +1,13 @@
+GoAuth Example using Googles Buzz
+=================================
+
+This is a simple example that uses GoAuth to 
+access Google Buzz service. 
+
+Please note the example makes use of the GoBuzz
+package that contains structures for the JSON
+that is returned by the Service.
+
+Found Here : 
+	https://github.com/hokapoka/gobuzz
+
