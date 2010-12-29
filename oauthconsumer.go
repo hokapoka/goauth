@@ -64,7 +64,7 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os
 					Encode(strings.Join(sigBaseCol, "&"))
 
 	// Generate Composite Signing key
-	key := Encode(oc.ConsumerSecret) + "&" + "" // token secrect is blank on the Resquest Token
+	key := Encode(oc.ConsumerSecret) + "&" + "" // token secrect is blank on the Request Token
 
 	// Generate Signature
 	d := oc.digest(key, sigBaseStr)
@@ -87,12 +87,18 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os
 	if lAddParams > 0 {
 		oc.RequestTokenURL += "?" + string(buf.Bytes())
 	}
- 
+
 	r, err := get(oc.RequestTokenURL, headers)
 
 	if err != nil {
 		return "", nil, err
 	}
+
+	if r.StatusCode != 200 {
+		// OAuth service returned an error
+		return "", nil, os.NewError("OAuth Service returned an error : " + r.Status )
+	}
+
 
 	b, _ := ioutil.ReadAll( r.Body ) 
 	s := string(b)
@@ -100,17 +106,20 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os
 
 	rt := &RequestToken{}
 
-	if strings.Index(s, "&") > -1 {
-		vals := strings.Split(s, "&", 10)
+	if strings.Index(s, "&") == -1 {
+		// Body is empty 
+		return "", nil, os.NewError("Empty response from server")
+	}
 
-		for i := range vals {
-			if strings.Index(vals[i], "=") > -1 {
-				kv := strings.Split(vals[i], "=", 2)
-				if len(kv) > 0 { // Adds the key even if there's no value. 
-					switch kv[0]{
-						case "oauth_token":					if len(kv) > 1 { rt.Token = kv[1] }; break
-						case "oauth_token_secret":			if len(kv) > 1 { rt.Secret = kv[1] }; break
-					}
+	vals := strings.Split(s, "&", 10)
+
+	for i := range vals {
+		if strings.Index(vals[i], "=") > -1 {
+			kv := strings.Split(vals[i], "=", 2)
+			if len(kv) > 0 { // Adds the key even if there's no value. 
+				switch kv[0]{
+					case "oauth_token":					if len(kv) > 1 { rt.Token = kv[1] }; break
+					case "oauth_token_secret":			if len(kv) > 1 { rt.Secret = kv[1] }; break
 				}
 			}
 		}
@@ -129,7 +138,8 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 
 	// Match the RequestToken by Token
 	for i := range oc.requestTokens {
-		if oc.requestTokens[i].Token == Encode(token) {
+		if oc.requestTokens[i].Token == token || 
+		   oc.requestTokens[i].Token == Encode(token) {
 			rt = oc.requestTokens[i]
 		}
 	}
@@ -199,7 +209,7 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 	// Read response Body & Create AccessToken
 	b, _ := ioutil.ReadAll( r.Body ) 
 	s := string(b)
-	at := &AccessToken{}
+	at := &AccessToken{ Service:oc.Service }
 
 	if strings.Index(s, "&") > -1 {
 		vals := strings.Split(s, "&", 10)

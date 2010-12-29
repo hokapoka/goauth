@@ -10,10 +10,12 @@ type RequestToken struct{
 }
 
 type AccessToken struct{
+	Id string
 	Token string
 	Secret string
 	UserRef string
 	Verifier string
+	Service string
 }
 
 
