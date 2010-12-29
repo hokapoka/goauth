@@ -8,7 +8,7 @@ Copyright 2010 The GOAuth Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 
-V 0.0.4
+V 0.0.5
 
 Example Usage :
 
@@ -54,6 +54,23 @@ my gobuzz package here : http://github.com/hokapoka/gobuzz
 
 Revision History 
 ----------------
+
+    == Version 0.0.5 ==
+	
+	Minor changes to make GetRequestToken more robust.
+
+	Until now, if the ConsumerKey / ConsumerSecrets were incorrect
+	there was no feedback to the consumer that it had failed to 
+	obtain the Request token correctally.
+
+	Now the consumer returns the an error that reflects the status
+	that has been returned from the OAuth service.  Additionally 
+	it also returns an error if to token has been recivied even if
+	the service hasn't responed with an error.
+
+	An additional Exported member has been added to the AccessToken
+	that allows it to be stored in a persistant data store with the 
+	service that it relates to.
 
     == Version 0.0.4 ==
 
