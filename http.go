@@ -18,7 +18,10 @@ func get(url string,  headers map[string]string) (r *http.Response, err os.Error
 
 	var req http.Request
 	if err != nil { return }
-	req.Header = headers
+	for k, v := range headers {
+		req.Header.Add(k, v)
+	}
+//	req.Header = headers
 	req.URL, err = http.ParseURL(url)
 
 	r, err = send(&req)
@@ -34,7 +37,9 @@ func post(url string, headers map[string]string, body io.Reader) (r *http.Respon
     req.ProtoMinor = 1
     req.Close = true
     req.Body = nopCloser{body}
-	req.Header = headers
+	for k, v := range headers {
+		req.Header.Add(k, v)
+	}
     req.TransferEncoding = []string{"chunked"}
 
     req.URL, err = http.ParseURL(url)
