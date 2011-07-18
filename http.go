@@ -101,9 +101,9 @@ func send(req *http.Request) (resp *http.Response, err os.Error) {
 */
     var conn io.ReadWriteCloser
     if req.URL.Scheme == "http" {
-        conn, err = net.Dial("tcp", "", addr)
+        conn, err = net.Dial("tcp", addr)
     } else { // https
-        conn, err = tls.Dial("tcp", "", addr, nil)
+        conn, err = tls.Dial("tcp", addr, nil)
     }
     if err != nil {
         return nil, err
@@ -116,7 +116,7 @@ func send(req *http.Request) (resp *http.Response, err os.Error) {
     }
 
     reader := bufio.NewReader(conn)
-    resp, err = http.ReadResponse(reader, req.Method)
+    resp, err = http.ReadResponse(reader, req)
     if err != nil {
         conn.Close()
         return nil, err
