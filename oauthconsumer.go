@@ -111,11 +111,11 @@ func (oc *OAuthConsumer) GetRequestAuthorizationURL() (string, *RequestToken, os
 		return "", nil, os.NewError("Empty response from server")
 	}
 
-	vals := strings.Split(s, "&", 10)
+	vals := strings.SplitN(s, "&", 10)
 
 	for i := range vals {
 		if strings.Index(vals[i], "=") > -1 {
-			kv := strings.Split(vals[i], "=", 2)
+			kv := strings.SplitN(vals[i], "=", 2)
 			if len(kv) > 0 { // Adds the key even if there's no value. 
 				switch kv[0]{
 					case "oauth_token":					if len(kv) > 1 { rt.Token = kv[1] }; break
@@ -212,11 +212,11 @@ func (oc *OAuthConsumer) GetAccessToken(token string, verifier string, ) *Access
 	at := &AccessToken{ Service:oc.Service }
 
 	if strings.Index(s, "&") > -1 {
-		vals := strings.Split(s, "&", 10)
+		vals := strings.SplitN(s, "&", 10)
 
 		for i := range vals {
 			if strings.Index(vals[i], "=") > -1 {
-				kv := strings.Split(vals[i], "=", 2)
+				kv := strings.SplitN(vals[i], "=", 2)
 				if len(kv) > 0 { // Adds the key even if there's no value. 
 					switch kv[0]{
 						case "oauth_token":					if len(kv) > 1 { at.Token = kv[1] };  break
